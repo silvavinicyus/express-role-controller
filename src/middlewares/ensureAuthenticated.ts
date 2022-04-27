@@ -3,13 +3,13 @@ import { decode, verify } from "jsonwebtoken";
 
 export const ensureAuthenticated = () => {
   return async (request: Request, response: Response, next: NextFunction) => {
-    const authHeaders = request.headers.authorization;
+    const authHeaders = request.headers.authorization;    
 
-    if(!authHeaders) {
+    if(!authHeaders) {      
       return response.status(401).json({error: 'Token is missing'});
     }
 
-    const [, token] = authHeaders.split("");
+    const [, token] = authHeaders.split(" ");    
 
     try {
       verify(token, process.env.SECRET_JWT);
@@ -17,11 +17,11 @@ export const ensureAuthenticated = () => {
       const { sub } = decode(token);    
       request.user = {
         id: sub.toString(),
-      }
+      }      
 
       return next();
-    } catch(err) {
-      return response.status(401).end();
+    } catch(err) {      
+      return response.status(401).json();
     }
   }
 }
