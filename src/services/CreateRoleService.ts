@@ -6,8 +6,7 @@ export class CreateRoleService {
   async execute({name, description}: RoleDTO): Promise<Role> {
     const repo = RoleRepository();
 
-    const roleExists = await repo.findOne({name});
-    console.log(roleExists);
+    const roleExists = await repo.findOne({name});    
 
     if(roleExists) {
       throw new Error("Role already exists");

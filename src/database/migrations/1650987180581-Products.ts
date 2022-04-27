@@ -22,6 +22,11 @@ export class Products1650987180581 implements MigrationInterface {
                 {
                     name: 'price',
                     type: 'float'
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()'
                 }
             ]
         }))

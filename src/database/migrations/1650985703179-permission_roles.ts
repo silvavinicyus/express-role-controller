@@ -5,12 +5,7 @@ export class permissionRoles1650985703179 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: 'permission_roles',
-            columns: [
-                {
-                    name: 'id',
-                    type: 'varchar',
-                    isPrimary: true
-                },
+            columns: [                
                 {
                     name: 'permission_id',
                     type: 'uuid'
